@@ -3,6 +3,10 @@ from exceptions import (InvalidArgumentException, BadOrientationException,
     BadMovementException,  NoOrientationException, InstructionListException)
 
 class Robot:
+    """
+    Class representing the robot
+    on the surface of mars
+    """
     allowed_orientations = ["N", "E", "S", "W"]
     allowed_movements = ["R", "L", "F"]
     orientation = None
@@ -16,11 +20,15 @@ class Robot:
         self.ycoord = ycoord
 
     def set_orientation(self, direction):
+        """ sets the initial orientation of the robot """
+
         if direction not in self.allowed_orientations:
             raise BadOrientationException("invalid orientation")
         self.orientation = direction
 
     def process_movement(self, movement):
+        """ processes movement actions for the robot """
+
         if self.orientation is None:
             raise NoOrientationException("set orientation first")
         if movement not in self.allowed_movements:
@@ -67,12 +75,20 @@ class Robot:
 
 
 class MarsMap:
+    """
+    Class representing the known surface of 
+    mars.
+    """
     scent_locations = []
     def __init__(self, xcoord,ycoord):
         self.xcoord = xcoord
         self.ycoord = ycoord
 
     def process_robot_actions(self, robot, instructionline):
+        """
+        takes in a line of instructions/processes
+        and executes them
+        """
         instruction_list = list(instructionline)
         if len(instruction_list) > 99:
             raise InstructionListException("instruction list is too long")
