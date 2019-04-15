@@ -1,4 +1,4 @@
-### run script (python 3.6)
+### run script (python 3.6.4)
 
 `$ python3 robot.py sampleinput.txt`
 
